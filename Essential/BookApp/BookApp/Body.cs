@@ -7,8 +7,7 @@ namespace BookApp
         private string _content;
 
         public string Content
-        {
-            private get
+        {   get
             {
                 if (_content != null)
                 {
