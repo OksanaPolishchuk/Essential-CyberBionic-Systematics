@@ -4,41 +4,41 @@ namespace BookApp
 {
     public class Document
     {
-        Title title = null;
-        Body _body = null;
-        Author author = null;
+        Title _title;
+        Body _body;
+        Author _author;
 
         private void InitializeDocument()
         {
-            this.title = new Title();
+            this._title = new Title();
             this._body = new Body();
-            this.author = new Author();
+            this._author = new Author();
         }
 
         public Document(string title)
         {
             InitializeDocument();
-            this.title.Content = title;
+            this._title.Content = title;
         }
 
         public Document(string title, string author, string body)
         {
             InitializeDocument();
-            this.title.Content = title;
-            this.author.Content = author;
+            this._title.Content = title;
+            this._author.Content = author;
             this._body.Content = body;
         }
 
         public void Show()
         { 
-            this.title.Show();
+            this._title.Show();
             this._body.Show();
-            this.author.Show();
+            this._author.Show();
         }
 
         public string Concatenate()
         {
-            return this.title.Content + "\n" + this.author.Content
+            return this._title.Content + "\n" + this._author.Content
                    + "\n" + this._body.Content;
         }
 
@@ -54,7 +54,7 @@ namespace BookApp
         {
             set
             {
-                this.author.Content = value;
+                this._author.Content = value;
             }
         }
 
