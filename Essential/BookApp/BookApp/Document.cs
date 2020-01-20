@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BookApp
+﻿namespace BookApp
 {
     public class Document
     {
@@ -31,22 +29,22 @@ namespace BookApp
 
         public void Show()
         { 
-            this._title.Show();
-            this._body.Show();
-            this._author.Show();
+            _title.Show();
+            _body.Show();
+            _author.Show();
         }
 
         public string Concatenate()
         {
-            return this._title.Content + "\n" + this._author.Content
-                   + "\n" + this._body.Content;
+            return _title.Content + "\n" + _author.Content
+                   + "\n" + _body.Content;
         }
 
         public string Body
         {
             set
             {
-                this._body.Content = value;
+                _body.Content = value;
             }
         }
 
@@ -54,7 +52,7 @@ namespace BookApp
         {
             set
             {
-                this._author.Content = value;
+                _author.Content = value;
             }
         }
 

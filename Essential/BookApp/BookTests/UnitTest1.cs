@@ -1,8 +1,7 @@
-﻿using System;
-
+﻿using BookApp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BookApp.Tests
+namespace BookTests
 {
     [TestClass]
     public class BookAppTests
