@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PolygonApp;
-using Point = PolygonApp.Point;
+using PolygonApp.Model;
 
 namespace PointTest
 {
@@ -15,11 +15,11 @@ namespace PointTest
             [TestInitialize]
             public void Init()
             {
-                var a = new Point(1, 2);
-                var b = new Point(3,2);
-                var c = new Point(3,5);
-                var d = new Point(1,5);
-                _target = new Figure(new[] {a, b, c, d});
+                var a = new Point(1, 2, "a");
+                var b = new Point(3,2, "b");
+                var c = new Point(3,5, "c");
+                var d = new Point(1,5, "d");
+                _target = new Figure(new Point[] {a, b, c, d});
             }
 
             [TestMethod]

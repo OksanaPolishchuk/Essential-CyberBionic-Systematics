@@ -1,4 +1,5 @@
 ﻿using System;
+using PolygonApp.Model;
 
 namespace PolygonApp
 {
@@ -54,7 +55,7 @@ namespace PolygonApp
             for (int i = 0; i < numberOfSides; ++i)
             {
 
-                points[i] = new Point(coordinates[i * 2], coordinates[i * 2 + 1]);
+                points[i] = new Point(coordinates[i * 2], coordinates[i * 2 + 1], "");
             }
             
             Figure polygon = new Figure(points);
