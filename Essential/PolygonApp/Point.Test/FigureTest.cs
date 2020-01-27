@@ -15,17 +15,19 @@ namespace PointTest
             [TestInitialize]
             public void Init()
             {
-                Point[] points = new []{new Point(2, 3)};
-                _target = new Figure(points);
+                var a = new Point(1, 2);
+                var b = new Point(3,2);
+                var c = new Point(3,5);
+                var d = new Point(1,5);
+                _target = new Figure(new[] {a, b, c, d});
             }
 
             [TestMethod]
             public void FigureCalculatePerimeterTest()
             {
                 var actual = _target.CalculatePerimeter();
-                Assert.AreEqual(6, actual);
+                Assert.AreEqual(10, actual);
             }
-
         }
     }
 }

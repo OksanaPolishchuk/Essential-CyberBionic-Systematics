@@ -1,21 +1,9 @@
-﻿using System;
-
-namespace PolygonApp
+﻿namespace PolygonApp
 {
     class Program
     {
-        static void Main(string[]args)
+        static void Main()
         {
-            Point point = new Point("");
-
-            Options options = new Options();
-            
-            Console.WriteLine($"\nPerimeter:  {options.Perimeter}\n"+
-                              $"\n Name of the figure: {point.Name}");
-
-            Console.ReadKey();
         }
-
     }
 }
-
