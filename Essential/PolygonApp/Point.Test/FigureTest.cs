@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PolygonApp;
-using PolygonApp.Model;
 
-namespace PointTest
+namespace Point.Test
 {
     [TestClass]
     public class FigureTest
@@ -15,11 +14,11 @@ namespace PointTest
             [TestInitialize]
             public void Init()
             {
-                var a = new Point(1, 2, "a");
-                var b = new Point(3,2, "b");
-                var c = new Point(3,5, "c");
-                var d = new Point(1,5, "d");
-                _target = new Figure(new Point[] {a, b, c, d});
+                var a = new PolygonApp.Model.Point(x: 1, y: 2, name: "a");
+                var b = new PolygonApp.Model.Point(x: 3, y: 2, name: "b");
+                var c = new PolygonApp.Model.Point(x: 3, y: 5, name: "c");
+                var d = new PolygonApp.Model.Point(x: 1, y: 5, name: "d");
+                _target = new Figure(points: new PolygonApp.Model.Point[] { a, b, c, d });
             }
 
             [TestMethod]
@@ -27,6 +26,15 @@ namespace PointTest
             {
                 var actual = _target.CalculatePerimeter();
                 Assert.AreEqual(10, actual);
+            }
+
+            [TestMethod]
+            public void LengthSideTest()
+            {
+                var a = new PolygonApp.Model.Point(x: 1, y: 2, name: "a");
+                var b = new PolygonApp.Model.Point(x: 3, y: 2, name: "b");
+                var actual = _target.LengthSide(a, b);
+                Assert.AreEqual(2, actual);
             }
         }
     }

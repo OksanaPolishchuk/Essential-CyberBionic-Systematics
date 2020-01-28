@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using PolygonApp.Model;
 
 namespace PolygonApp
@@ -23,10 +24,10 @@ namespace PolygonApp
 
             for (int i = 1; i < _points.Length; i++)
             {
-                perimeter += this.LengthSide(_points[i - 1], _points[i]);
+                perimeter += LengthSide(_points[i - 1], _points[i]);
             }
 
-            perimeter += this.LengthSide(_points[0], _points[_points.Length - 1]);
+            perimeter += LengthSide(_points[0], _points[_points.Length - 1]);
             return perimeter;
         }
     }
