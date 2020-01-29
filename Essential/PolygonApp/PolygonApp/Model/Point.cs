@@ -1,4 +1,5 @@
-﻿namespace PolygonApp.Model
+﻿using PolygonApp.Model;
+namespace PolygonApp.Model
 {
     public class Point
     {
@@ -9,7 +10,7 @@
             Name = name;
         }
         public int X { get; }
-
+         
         public int Y { get; }
 
         public string Name { get; }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolygonApp", "PolygonApp\Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Point.Test", "Point.Test\Point.Test.csproj", "{FAC4C09D-4F96-417C-A021-41E60ACF9361}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointTests", "PointTests\PointTests.csproj", "{1576F56B-FFB8-4D43-B68D-31753B105250}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FAC4C09D-4F96-417C-A021-41E60ACF9361}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAC4C09D-4F96-417C-A021-41E60ACF9361}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAC4C09D-4F96-417C-A021-41E60ACF9361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1576F56B-FFB8-4D43-B68D-31753B105250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1576F56B-FFB8-4D43-B68D-31753B105250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1576F56B-FFB8-4D43-B68D-31753B105250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1576F56B-FFB8-4D43-B68D-31753B105250}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
