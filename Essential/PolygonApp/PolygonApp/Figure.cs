@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using PolygonApp.Model;
 
@@ -14,6 +16,7 @@ namespace PolygonApp
 
         public double LengthSide(Point a, Point b)
         {
+            
             double length = Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
             return length;
         }
@@ -29,6 +32,21 @@ namespace PolygonApp
 
             perimeter += LengthSide(_points[0], _points[_points.Length - 1]);
             return perimeter;
+        }
+
+        public string GetName()
+        {
+            if (IsSquare())
+            {
+               return "square";
+            }
+
+            throw new ArgumentException("Фигура не определена");
+        }
+
+        private bool IsSquare()
+        {
+            return _points.Length == 4;
         }
     }
 }

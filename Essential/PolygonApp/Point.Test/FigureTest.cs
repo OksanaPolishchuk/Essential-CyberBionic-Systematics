@@ -1,5 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PolygonApp;
+using Point = PolygonApp.Model.Point;
 
 namespace Point.Test
 {
@@ -32,6 +34,20 @@ namespace Point.Test
             var b = new PolygonApp.Model.Point(x: 3, y: 2, name: "b");
             var actual = _target.LengthSide(a, b);
             Assert.AreEqual(2, actual);
+        }
+
+        [TestMethod]
+        public void GetNameTest()
+        {
+            string actual = _target.GetName();
+            Assert.AreEqual("square", actual);
+        }
+        
+        [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
+        public void GetNameFailTest()
+        {
+            _target = new Figure(new []{new PolygonApp.Model.Point(2, 0, "") });
+            string actual = _target.GetName();
         }
     }
 }
