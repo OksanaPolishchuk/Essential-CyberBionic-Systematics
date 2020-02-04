@@ -38,15 +38,28 @@ namespace Point.Test
 
         [TestMethod]
         public void GetNameTest()
-        {
-            string actual = _target.GetName();
+        { 
+            string actual = _target.GetName(); 
             Assert.AreEqual("square", actual);
+
+            if (actual != _target.GetName())
+            {
+                string actual1 = _target.GetName();
+                Assert.AreEqual("triangle", actual1);
+            }
         }
         
         [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
         public void GetNameFailTest()
         {
             _target = new Figure(new []{new PolygonApp.Model.Point(2, 0, "") });
+            string actual = _target.GetName();
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
+        public void GetName2FailTest()
+        {
+            _target = new Figure(new[] { new PolygonApp.Model.Point(2, 0, "") });
             string actual = _target.GetName();
         }
     }

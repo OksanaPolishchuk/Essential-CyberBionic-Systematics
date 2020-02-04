@@ -38,15 +38,23 @@ namespace PolygonApp
         {
             if (IsSquare())
             {
-               return "square";
+                return "square";
             }
-
-            throw new ArgumentException("Фигура не определена");
+            if (IsTriangle())
+            {
+                return "triangle";
+            }
+          
+              throw new ArgumentException("Фигура не определена");
         }
-
         private bool IsSquare()
         {
             return _points.Length == 4;
+        }
+
+        private bool IsTriangle()
+        {
+            return _points.Length == 3;
         }
     }
 }
