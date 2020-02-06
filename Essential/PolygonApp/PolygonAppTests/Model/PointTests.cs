@@ -1,9 +1,6 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PolygonApp.Model;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace PointTests
+namespace PolygonAppTests.Model
 {
     [TestClass]
     public class PointTests

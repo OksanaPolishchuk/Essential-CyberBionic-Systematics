@@ -1,9 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PolygonApp;
-using Point = PolygonApp.Model.Point;
 
-namespace Point.Test
+namespace PolygonAppTests
 {
     [TestClass]
     public class FigureTests
