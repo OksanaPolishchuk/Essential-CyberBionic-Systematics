@@ -40,12 +40,13 @@ namespace PolygonApp
             {
                 return "square";
             }
+
             if (IsTriangle())
             {
                 return "triangle";
             }
           
-              throw new ArgumentException("Фигура не определена");
+            throw new ArgumentException("Фигура не определена");
         }
         private bool IsSquare()
         {
