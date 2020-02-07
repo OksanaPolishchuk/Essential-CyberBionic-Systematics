@@ -14,15 +14,14 @@ namespace PolygonApp
         
         public double CalculatePerimeter()
         {
-            Distance _distance = new Distance(points: new Point[] {});
             double perimeter = 0;
 
             for (int i = 1; i < _points.Length; i++)
             {
-                perimeter += _distance.LengthSide(_points[i - 1], _points[i]);
+                perimeter += Distance.LengthSide(_points[i - 1], _points[i]);
             }
 
-            perimeter += _distance.LengthSide(_points[0], _points[_points.Length - 1]);
+            perimeter += Distance.LengthSide(_points[0], _points[_points.Length - 1]);
             return perimeter;
         }
 
