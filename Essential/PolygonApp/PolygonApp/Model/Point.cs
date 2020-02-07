@@ -1,5 +1,4 @@
-﻿using PolygonApp.Model;
-namespace PolygonApp.Model
+﻿namespace PolygonApp.Model
 {
     public class Point
     {

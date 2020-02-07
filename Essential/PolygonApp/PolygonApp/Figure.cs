@@ -1,7 +1,5 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.ComTypes;
 using PolygonApp.Model;
 
 namespace PolygonApp
@@ -13,24 +11,18 @@ namespace PolygonApp
         {
             _points = points;
         }
-
-        public double LengthSide(Point a, Point b)
-        {
-            
-            double length = Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
-            return length;
-        }
-
+        
         public double CalculatePerimeter()
         {
+            Distance _distance = new Distance(points: new Point[] {});
             double perimeter = 0;
 
             for (int i = 1; i < _points.Length; i++)
             {
-                perimeter += LengthSide(_points[i - 1], _points[i]);
+                perimeter += _distance.LengthSide(_points[i - 1], _points[i]);
             }
 
-            perimeter += LengthSide(_points[0], _points[_points.Length - 1]);
+            perimeter += _distance.LengthSide(_points[0], _points[_points.Length - 1]);
             return perimeter;
         }
 
@@ -45,9 +37,15 @@ namespace PolygonApp
             {
                 return "triangle";
             }
+
+            if (IsDistance())
+            {
+                return "distance between two points";
+            }
           
             throw new ArgumentException("Фигура не определена");
         }
+
         private bool IsSquare()
         {
             return _points.Length == 4;
@@ -56,6 +54,11 @@ namespace PolygonApp
         private bool IsTriangle()
         {
             return _points.Length == 3;
+        }
+
+        private bool IsDistance()
+        {
+            return _points.Length == 2;
         }
     }
 }
