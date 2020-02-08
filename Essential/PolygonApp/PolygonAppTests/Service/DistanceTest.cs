@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PolygonApp;
 using PolygonApp.Model;
+using PolygonApp.Service;
 
-namespace PolygonAppTests
+namespace PolygonAppTests.Service
 {
     [TestClass]
     public class DistanceTest

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
-using PolygonApp.Model;
+using PolygonApp.Service;
 
-namespace PolygonApp
+namespace PolygonApp.Model
 {
     public class Figure
     {
@@ -27,9 +26,14 @@ namespace PolygonApp
 
         public string GetName()
         {
-            if (IsSquare())
+            if (IsPoint())
             {
-                return "square";
+                return "point";
+            }
+
+            if (IsLine())
+            {
+                return "line";
             }
 
             if (IsTriangle())
@@ -37,12 +41,22 @@ namespace PolygonApp
                 return "triangle";
             }
 
-            if (IsDistance())
+            if (IsSquare())
             {
-                return "distance between two points";
+                return "square";
             }
-          
+            
+            if (IsPolygon())
+            {
+                return "polygon";
+            }
+
             throw new ArgumentException("Фигура не определена");
+        }
+
+        private bool IsPolygon()
+        {
+            return _points.Length >= 5;
         }
 
         private bool IsSquare()
@@ -55,9 +69,14 @@ namespace PolygonApp
             return _points.Length == 3;
         }
 
-        private bool IsDistance()
+        private bool IsLine()
         {
             return _points.Length == 2;
+        }
+
+        private bool IsPoint()
+        {
+            return _points.Length == 1;
         }
     }
 }

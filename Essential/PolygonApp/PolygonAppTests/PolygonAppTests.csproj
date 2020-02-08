@@ -61,10 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FigureTest.cs" />
+    <Compile Include="Model\FigureTest.cs" />
     <Compile Include="Model\PointTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DistanceTest.cs" />
+    <Compile Include="Service\DistanceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
