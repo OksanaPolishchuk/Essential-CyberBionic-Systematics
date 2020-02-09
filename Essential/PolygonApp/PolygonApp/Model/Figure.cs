@@ -24,49 +24,59 @@ namespace PolygonApp.Model
             return perimeter;
         }
 
-        public string GetName()
+        public FigureType GetName()
         {
             if (IsPoint())
             {
-                return "point";
+                FigureType figureType = FigureType.Point;
+
+                return figureType;
             }
 
             if (IsLine())
             {
-                return "line";
+                FigureType figureType = FigureType.Line;
+
+                return figureType;
             }
 
             if (IsTriangle())
             {
-                return "triangle";
+                FigureType figureType = FigureType.Triangle;
+
+                return figureType;
             }
 
             if (IsSquare())
             {
-                return "square";
+                FigureType figureType = FigureType.Square;
+
+                return figureType;
             }
-            
+
             if (IsPolygon())
             {
-                return "polygon";
+                FigureType figureType = FigureType.Polygon;
+
+                return figureType;
             }
 
             throw new ArgumentException("Фигура не определена");
         }
 
-        private bool IsPolygon()
+        public enum FigureType
         {
-            return _points.Length >= 5;
+            None = 0,
+            Point = 1,
+            Line = 2,
+            Triangle = 3,
+            Square = 4,
+            Polygon = 5
         }
-
-        private bool IsSquare()
+       
+        private bool IsPoint()
         {
-            return _points.Length == 4;
-        }
-
-        private bool IsTriangle()
-        {
-            return _points.Length == 3;
+            return _points.Length == 1;
         }
 
         private bool IsLine()
@@ -74,9 +84,19 @@ namespace PolygonApp.Model
             return _points.Length == 2;
         }
 
-        private bool IsPoint()
+        private bool IsTriangle()
         {
-            return _points.Length == 1;
+            return _points.Length == 3;
+        }
+
+        private bool IsSquare()
+        {
+            return _points.Length == 4;
+        } 
+        
+        private bool IsPolygon()
+        {
+            return _points.Length >= 5;
         }
     }
 }
