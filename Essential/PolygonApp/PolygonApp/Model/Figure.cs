@@ -20,60 +20,43 @@ namespace PolygonApp.Model
                 perimeter += Distance.LengthSide(_points[i - 1], _points[i]);
             }
 
-            perimeter += Distance.LengthSide(_points[0], _points[_points.Length - 1]);
-            return perimeter;
+           return perimeter += Distance.LengthSide(_points[0], _points[_points.Length - 1]);
+
         }
 
-        public FigureType GetName()
+        public new FigureType GetType()
         {
+            FigureType figureType = FigureType.None;
+
             if (IsPoint())
             {
-                FigureType figureType = FigureType.Point;
-
-                return figureType;
-            }
-
-            if (IsLine())
+                figureType = FigureType.Point;
+            } 
+            else if (IsLine())
             {
-                FigureType figureType = FigureType.Line;
-
-                return figureType;
+                figureType = FigureType.Line;
             }
-
-            if (IsTriangle())
+            else if(IsTriangle())
             {
-                FigureType figureType = FigureType.Triangle;
-
-                return figureType;
+                figureType = FigureType.Triangle;
             }
-
-            if (IsSquare())
+            else if(IsSquare())
             {
-                FigureType figureType = FigureType.Square;
-
-                return figureType;
+                figureType = FigureType.Square;
             }
-
-            if (IsPolygon())
+            else if (IsPolygon())
             {
-                FigureType figureType = FigureType.Polygon;
-
-                return figureType;
+                figureType = FigureType.Polygon;
+            }
+            else
+            {
+                throw new ArgumentException("Фигура не определена");
             }
 
-            throw new ArgumentException("Фигура не определена");
+            return figureType;
+
         }
 
-        public enum FigureType
-        {
-            None = 0,
-            Point = 1,
-            Line = 2,
-            Triangle = 3,
-            Square = 4,
-            Polygon = 5
-        }
-       
         private bool IsPoint()
         {
             return _points.Length == 1;
@@ -86,7 +69,12 @@ namespace PolygonApp.Model
 
         private bool IsTriangle()
         {
-            return _points.Length == 3;
+            if(_points.Length == 3)
+            {
+               return this.TriangleProperty() > 0;
+            }
+
+            return false;
         }
 
         private bool IsSquare()
@@ -97,6 +85,12 @@ namespace PolygonApp.Model
         private bool IsPolygon()
         {
             return _points.Length >= 5;
+        }
+
+        public double TriangleProperty()
+        {
+            double sum = Distance.LengthSide(_points[0], _points[1]) + Distance.LengthSide(_points[1], _points[2]); 
+            return  sum -  Distance.LengthSide(_points[2], _points[0]);
         }
     }
 }

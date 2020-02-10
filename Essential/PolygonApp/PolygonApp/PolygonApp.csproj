@@ -36,6 +36,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\FigureType.cs" />
     <Compile Include="Service\Distance.cs" />
     <Compile Include="Model\Figure.cs" />
     <Compile Include="Model\Point.cs" />

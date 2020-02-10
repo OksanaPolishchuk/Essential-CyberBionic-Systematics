@@ -9,6 +9,7 @@ namespace PolygonAppTests.Model
     public class FigureTests
     {
         private Figure _target;
+        private const double Tolerance = 0.0000001;
 
         [TestInitialize]
         public void Init()
@@ -37,8 +38,8 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a });
 
-            Figure.FigureType actual = _target.GetName();
-            Assert.AreEqual(Figure.FigureType.Point, actual);
+          FigureType actual = _target.GetType();
+            Assert.AreEqual(FigureType.Point, actual);
         }
 
         [TestMethod]
@@ -49,8 +50,8 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b });
 
-            Figure.FigureType actual = _target.GetName();
-            Assert.AreEqual(Figure.FigureType.Line, actual);
+           FigureType actual = _target.GetType();
+            Assert.AreEqual(FigureType.Line, actual);
         }
 
         [TestMethod]
@@ -62,8 +63,8 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c });
 
-            Figure.FigureType actual = _target.GetName();
-            Assert.AreEqual(Figure.FigureType.Triangle, actual);
+            FigureType actual = _target.GetType();
+            Assert.AreEqual(FigureType.Triangle, actual);
         }
 
         [TestMethod]
@@ -76,8 +77,8 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c, d });
 
-            Figure.FigureType actual = _target.GetName();
-            Assert.AreEqual(Figure.FigureType.Square, actual);
+            FigureType actual = _target.GetType();
+            Assert.AreEqual(FigureType.Square, actual);
         }
 
         [TestMethod]
@@ -91,14 +92,27 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c, d, e });
 
-            Figure.FigureType actual = _target.GetName();
-            Assert.AreEqual(Figure.FigureType.Polygon, actual);
+            FigureType actual = _target.GetType();
+            Assert.AreEqual(FigureType.Polygon, actual);
+        }
+
+        [TestMethod]
+        public void TriangleProperty()
+        {
+            var a = new Point(x: 1, y: 2, name: "a");
+            var b = new Point(x: 3, y: 2, name: "b");
+            var c = new Point(x: 3, y: 5, name: "c");
+            
+           var _target = new Figure(points: new[] { a, b, c });
+
+            var actual = _target.TriangleProperty();
+            Assert.IsTrue(Math.Abs(actual - 1.3944487) < Tolerance);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
         public void GetNameFailTest()
         {
-            Figure.FigureType actual = _target.GetName();
+            FigureType actual = _target.GetType();
         }
     }
 }
