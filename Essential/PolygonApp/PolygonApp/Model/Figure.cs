@@ -15,7 +15,7 @@ namespace PolygonApp.Model
         {
             double perimeter = 0;
 
-            for (int i = 1; i < _points.Length; i++)
+            for (var i = 1; i < _points.Length; i++)
             {
                 perimeter += Distance.LengthSide(_points[i - 1], _points[i]);
             }
@@ -24,7 +24,7 @@ namespace PolygonApp.Model
 
         }
 
-        public new FigureType GetType()
+        public  FigureType GetFigureType()
         {
             FigureType figureType = FigureType.None;
 

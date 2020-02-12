@@ -38,7 +38,7 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a });
 
-          FigureType actual = _target.GetType();
+          FigureType actual = _target.GetFigureType();
             Assert.AreEqual(FigureType.Point, actual);
         }
 
@@ -50,7 +50,7 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b });
 
-           FigureType actual = _target.GetType();
+           FigureType actual = _target.GetFigureType();
             Assert.AreEqual(FigureType.Line, actual);
         }
 
@@ -63,7 +63,7 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c });
 
-            FigureType actual = _target.GetType();
+            FigureType actual = _target.GetFigureType();
             Assert.AreEqual(FigureType.Triangle, actual);
         }
 
@@ -77,7 +77,7 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c, d });
 
-            FigureType actual = _target.GetType();
+            FigureType actual = _target.GetFigureType();
             Assert.AreEqual(FigureType.Square, actual);
         }
 
@@ -92,7 +92,7 @@ namespace PolygonAppTests.Model
 
             _target = new Figure(new[] { a, b, c, d, e });
 
-            FigureType actual = _target.GetType();
+            FigureType actual = _target.GetFigureType();
             Assert.AreEqual(FigureType.Polygon, actual);
         }
 
@@ -112,7 +112,7 @@ namespace PolygonAppTests.Model
         [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
         public void GetNameFailTest()
         {
-            FigureType actual = _target.GetType();
+            FigureType actual = _target.GetFigureType();
         }
     }
 }
