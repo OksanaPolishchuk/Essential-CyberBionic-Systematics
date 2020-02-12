@@ -26,7 +26,7 @@ namespace PolygonApp.Model
 
         public  FigureType GetFigureType()
         {
-            FigureType figureType = FigureType.None;
+            var figureType = FigureType.None;
 
             if (IsPoint())
             {
@@ -89,7 +89,7 @@ namespace PolygonApp.Model
 
         public double TriangleProperty()
         {
-            double sum = Distance.LengthSide(_points[0], _points[1]) + Distance.LengthSide(_points[1], _points[2]); 
+            var sum = Distance.LengthSide(_points[0], _points[1]) + Distance.LengthSide(_points[1], _points[2]); 
             return  sum -  Distance.LengthSide(_points[2], _points[0]);
         }
     }
