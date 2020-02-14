@@ -50,7 +50,7 @@ namespace PolygonApp.Model
             }
             else
             {
-                throw new ArgumentException("Фигура не определена");
+                throw new ArgumentException("Figure is not defined");
             }
 
             return figureType;

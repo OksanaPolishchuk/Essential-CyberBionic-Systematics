@@ -109,7 +109,7 @@ namespace PolygonAppTests.Model
             Assert.IsTrue(Math.Abs(actual - 1.3944487) < Tolerance);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentException), "Фигура не определена")]
+        [TestMethod, ExpectedException(typeof(ArgumentException), "Figure is not defined")]
         public void GetNameFailTest()
         {
            var actual = _target.GetFigureType();
