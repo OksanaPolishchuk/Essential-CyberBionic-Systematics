@@ -1,17 +1,17 @@
 ﻿using AddressApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AddressTest.Model
+namespace AddressAppTests.Model
 {
     [TestClass]
     public class AddressTests
     {
-        private AddressApp.Model.Address _target;
+        private Address _target;
 
         [TestInitialize]
         public void Init()
-        { 
-             _target = new Address();
+        {
+            _target = new Address();
         }
 
         [TestMethod]
