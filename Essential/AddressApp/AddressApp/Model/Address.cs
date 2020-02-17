@@ -2,31 +2,14 @@
 {
     public class Address
     {
-        private string _index;
-        private string _country;
-        private string _city;
-        private string _street;
-        private string _house;
-        private string _apartment;
-
         public Address(string index, string country, string city, string street, string house, string apartment)
         {
-            _index = index;
-            _country = country;
-            _city = city;
-            _street = street;
-            _house = house;
-            _apartment = apartment;
-        }
-
-        public Address()
-        {
-            Index = "03058";
-            Country = "Ukraine";
-            City = "Kiev";
-            Street = "Kreschatik";
-            House = "1/1";
-            Apartment = "5";
+            Index = index;
+            Country = country;
+            City = city;
+            Street = street;
+            House = house;
+            Apartment = apartment;
         }
 
         public string Index { get; set; }
@@ -40,5 +23,10 @@
         public string House { get; set; }
 
         public string Apartment { get; set; }
+
+        public override string ToString()
+        {
+            return $"{nameof(Index)}: {Index}, {nameof(Country)}: {Country}, {nameof(City)}: {City}, {nameof(Street)}: {Street}, {nameof(House)}: {House}, {nameof(Apartment)}: {Apartment}";
+        }
     }
 }

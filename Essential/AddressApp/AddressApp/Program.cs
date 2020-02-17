@@ -7,12 +7,9 @@ namespace AddressApp
     {
         static void Main(string[] args)
         {
-            Address address = new Address();
+            Address address = new Address(index: "01001", country: "Ukraine", city: "Kiev", street: "Kreschatik", house: "1/1", apartment: "23");
 
-            address.Index = "01001";
-            address.Apartment = "23";
-
-            Console.WriteLine( "Index: " + address.Index + "\n" + "Country: " + address.Country + "\n" + "City: " + address.City + "\n" + "Street: " + address.Street + "\n" + "House: " + address.House + "\n" + "Apartment: " + address.Apartment);
+            Console.WriteLine(address);
 
             Console.ReadKey();
         }

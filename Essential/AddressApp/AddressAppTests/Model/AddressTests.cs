@@ -1,5 +1,6 @@
 ﻿using AddressApp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace AddressAppTests.Model
 {
@@ -11,29 +12,60 @@ namespace AddressAppTests.Model
         [TestInitialize]
         public void Init()
         {
-            _target = new Address();
+            _target = new Address(index: "03058", country: "Ukraine", city: "Kiev", street: "Kreschatik", house: "1/1", apartment: "5");
         }
 
         [TestMethod]
-        public void AddressTest()
+        public void AddressIndexTest()
         {
             var actual = _target.Index;
-            Assert.AreEqual("03058", actual);
+            AreEqual("03058", actual);
+        }
 
-            var actual1 = _target.Country;
-            Assert.AreEqual("Ukraine", actual1);
+        [TestMethod]
+        public void CountryTest()
+        {
+            var actual = _target.Country;
+            AreEqual("Ukraine", actual);
+        }
 
-            var actual2 = _target.City;
-            Assert.AreEqual("Kiev", actual2);
+        [TestMethod]
+        public void CityTest()
+        {
+            var actual = _target.City;
+            AreEqual("Kiev", actual);
+        }
 
-            var actual3 = _target.Street;
-            Assert.AreEqual("Kreschatik", actual3);
+        [TestMethod]
+        public void StreetTest()
+        {
+            var actual = _target.Street;
+            AreEqual("Kreschatik", actual);
+        }
 
-            var actual4 = _target.House;
-            Assert.AreEqual("1/1", actual4);
+        [TestMethod]
+        public void HouseTest()
+        {
+            var actual = _target.House;
+            AreEqual("1/1", actual);
+        }
 
-            var actual5 = _target.Apartment;
-            Assert.AreEqual("5", actual5);
+        [TestMethod]
+        public void ApartmentTest()
+        {
+            var actual = _target.Apartment;
+            AreEqual("5", actual);
+        }
+
+
+        [TestMethod]
+        public void ToStringTest()
+        {
+            Address address = new Address(index: "01001", country: "Ukraine", city: "Kiev", street: "Kreschatik", house: "1/1", apartment: "23");
+            _target = address;
+            var actual = _target.ToString();
+
+            AreEqual("Index: 01001, Country: Ukraine, City: Kiev, Street: Kreschatik, House: 1/1, Apartment: 23", actual);
         }
     }
 }
