@@ -7,78 +7,36 @@ using System.Threading.Tasks;
 
 namespace ConverterApp
 {
-    public class Converter
+    /// <summary>
+    /// Makes an exchange
+    /// </summary>
+    public class Converter : IConverter
     {
         /// <summary>
-        /// Access method for UAH 
+        /// Access method for Amount
         /// </summary>
-        public decimal UAH
+        public decimal Amount
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Access method for USD
+        /// Access method for Currency
         /// </summary>
-        public decimal USD
+        public string Currency
         {
             get;
             set;
         }
 
         /// <summary>
-        ///  Access method for EUR
+        /// Access method for ExchangeRates
         /// </summary>
-        public decimal EUR
+        public Dictionary<string, decimal> ExchangeRates
         {
             get;
             set;
-        }
-
-        /// <summary>
-        ///  Access method for RUB
-        /// </summary>
-        public decimal RUB
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Converts a sum from UAH into new currencies
-        /// </summary>
-        /// <param name="sum">The sum that wil be converted</param>
-        /// <param name="exchangeRate">The converted currency exchange rate</param>
-        /// <returns>Amount in the new currency</returns>
-        public decimal ConvertFromUah(ref decimal sum, decimal exchangeRate)
-        {
-            if (sum > 0)
-            {
-                return sum = sum / exchangeRate;
-            }
-            else
-            {
-                throw new ArgumentException("Incorrect amount");
-            }
-        }
-
-        /// <summary>
-        /// Converts a sum into UAH 
-        /// </summary>
-        /// <param name="sum">The sum that wil be converted</param>
-        /// <param name="exchangeRate">The converted currency exchange rate</param>
-        /// <returns>Amount in the UAH</returns>
-        public decimal ConvertIntoUah(ref decimal sum, decimal exchangeRate)
-        {
-            if (sum > 0)
-            {
-                return sum = sum * exchangeRate;
-            }
-            else
-            {
-                throw new ArgumentException("Incorrect amount");
-            }
         }
 
         /// <summary>
@@ -88,12 +46,38 @@ namespace ConverterApp
         /// <param name="eur">The EUR/UAH exchange rate</param>
         /// <param name="rub">The RUB/UAH exchange rate</param>
         /// <param name="uah">The UAH/UAH exchange rate</param>
-        public Converter(decimal usd, decimal eur, decimal rub, decimal uah)
+        /// <param name="amount">The sum that wil be converted</param>
+        /// <param name="currency">The currency that wil be changed</param>
+        public Converter(decimal usd, decimal eur, decimal rub, decimal uah, decimal amount, string currency)
         {
-            UAH = uah;
-            USD = usd;
-            EUR = eur;
-            RUB = rub;
+            Amount = amount;
+            Currency = currency;
+
+            ExchangeRates = new Dictionary<string, decimal>()
+            {
+                {"UAH", uah},
+                {"USD", usd},
+                {"EUR", eur},
+                {"RUB", rub}
+
+            };
+        }
+
+        /// <summary>
+        /// Makes an exchange
+        /// </summary>
+        /// <param name="outputCurrency">The converted currency exchange rate</param>
+        /// <returns></returns>Returns new currency
+        public decimal Convert(string outputCurrency)
+        {
+            if (Amount > 0)
+            { 
+                return Amount * ExchangeRates[this.Currency] / ExchangeRates[outputCurrency];
+            }
+            else
+            { 
+                throw new ArgumentException("Incorrect amount");
+            }
         }
     }
 }
