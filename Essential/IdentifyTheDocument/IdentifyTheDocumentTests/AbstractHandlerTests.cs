@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IdentifyTheDocument;
+using IdentifyTheDocument.Wrappers;
 using NSubstitute;
 
 namespace IdentifyTheDocumentTests
@@ -24,6 +25,7 @@ namespace IdentifyTheDocumentTests
             _target.Open();
             var name = _mockFileInfo.Received().Name;
             var creationTime = _mockFileInfo.Received().CreationTime;
+            //_mockConsole.Received().WriteLine($"Name: {"fileInfoName"}");
         }
 
         [TestMethod()]

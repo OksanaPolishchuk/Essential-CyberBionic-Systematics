@@ -1,4 +1,5 @@
 ﻿using System;
+using IdentifyTheDocument.Wrappers;
 
 namespace IdentifyTheDocument
 {

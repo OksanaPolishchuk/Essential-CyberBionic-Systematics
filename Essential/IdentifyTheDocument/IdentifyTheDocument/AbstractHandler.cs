@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Text;
+using IdentifyTheDocument.Wrappers;
 
 namespace IdentifyTheDocument
 {
@@ -13,8 +16,9 @@ namespace IdentifyTheDocument
 
         public virtual void Open()
         {
-            Console.WriteLine("Name: {0}", _fileInfo.Name);
+            Console.WriteLine($"Name: {_fileInfo.Name}");
             Console.WriteLine("Time: {0}", _fileInfo.CreationTime);
+            Console.WriteLine("Extension: {0}", _fileInfo.Extension);
         }
     }
 }

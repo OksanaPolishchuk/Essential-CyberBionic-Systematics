@@ -34,8 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AbstractHandler.cs" />
-    <Compile Include="FileInfoWrapper.cs" />
-    <Compile Include="IFileInfoWrapper.cs" />
+    <Compile Include="Wrappers\FileInfoWrapper.cs" />
+    <Compile Include="Wrappers\IFileInfoWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -48,5 +48,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

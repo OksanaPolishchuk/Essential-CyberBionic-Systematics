@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace IdentifyTheDocument
+namespace IdentifyTheDocument.Wrappers
 {
     public class FileInfoWrapper : IFileInfoWrapper
     {
@@ -13,7 +13,7 @@ namespace IdentifyTheDocument
         }
 
         public string Name => _fileInfo.Name;
-
+        public string Extension => _fileInfo.Extension;
         public DateTime CreationTime => _fileInfo.CreationTime;
     }
 }
