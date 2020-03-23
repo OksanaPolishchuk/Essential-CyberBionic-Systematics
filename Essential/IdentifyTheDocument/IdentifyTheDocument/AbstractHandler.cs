@@ -8,17 +8,19 @@ namespace IdentifyTheDocument
     public class AbstractHandler
     {
         private readonly IFileInfoWrapper _fileInfo;
+        private readonly IConsoleWrapper _console;
 
-        public AbstractHandler(IFileInfoWrapper fileInfo)
+        public AbstractHandler(IFileInfoWrapper fileInfo, IConsoleWrapper console)
         {
             _fileInfo = fileInfo;
+            _console = console;
         }
 
         public virtual void Open()
         {
-            Console.WriteLine($"Name: {_fileInfo.Name}");
-            Console.WriteLine("Time: {0}", _fileInfo.CreationTime);
-            Console.WriteLine("Extension: {0}", _fileInfo.Extension);
+            _console.WriteLine($"Name: {_fileInfo.Name}");
+            _console.WriteLine("Time: {0}", _fileInfo.CreationTime);
+            _console.WriteLine("Extension: {0}", _fileInfo.Extension);
         }
     }
 }

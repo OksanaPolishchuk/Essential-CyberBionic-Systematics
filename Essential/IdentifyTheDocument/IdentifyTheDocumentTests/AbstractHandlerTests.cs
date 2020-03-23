@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IdentifyTheDocument;
 using IdentifyTheDocument.Wrappers;
 using NSubstitute;
@@ -9,14 +10,21 @@ namespace IdentifyTheDocumentTests
     public class AbstractHandlerTest
     {
         private AbstractHandler _target;
+
         private IFileInfoWrapper _mockFileInfo;
+        private IConsoleWrapper _mockConsole;
 
         [TestInitialize]
         public void Init()
         {
              _mockFileInfo = Substitute.For<IFileInfoWrapper>();
              _mockFileInfo.Name.Returns("fileInfoName");
-            _target = new AbstractHandler(_mockFileInfo);
+             _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
+             _mockFileInfo.Extension.Returns(".txt");
+            
+             _mockConsole = Substitute.For<IConsoleWrapper>();
+
+             _target = new AbstractHandler(_mockFileInfo, _mockConsole);
         }
 
         [TestMethod()]
@@ -25,7 +33,10 @@ namespace IdentifyTheDocumentTests
             _target.Open();
             var name = _mockFileInfo.Received().Name;
             var creationTime = _mockFileInfo.Received().CreationTime;
-            //_mockConsole.Received().WriteLine($"Name: {"fileInfoName"}");
+            var extension = _mockFileInfo.Received().Extension;
+            _mockConsole.Received().WriteLine($"Name: fileInfoName");
+            //_mockConsole.Received().WriteLine("");
+            //_mockConsole.Received().WriteLine("");
         }
 
         [TestMethod()]

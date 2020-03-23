@@ -34,6 +34,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AbstractHandler.cs" />
+    <Compile Include="ConsoleWrapper.cs" />
+    <Compile Include="IConsoleWrapper.cs" />
     <Compile Include="Wrappers\FileInfoWrapper.cs" />
     <Compile Include="Wrappers\IFileInfoWrapper.cs" />
     <Compile Include="Program.cs" />
