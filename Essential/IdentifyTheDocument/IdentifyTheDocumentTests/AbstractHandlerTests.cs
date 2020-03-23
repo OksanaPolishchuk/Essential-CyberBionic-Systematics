@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IdentifyTheDocument;
 using IdentifyTheDocument.Wrappers;
@@ -35,8 +36,8 @@ namespace IdentifyTheDocumentTests
             var creationTime = _mockFileInfo.Received().CreationTime;
             var extension = _mockFileInfo.Received().Extension;
             _mockConsole.Received().WriteLine($"Name: fileInfoName");
-            //_mockConsole.Received().WriteLine("");
-            //_mockConsole.Received().WriteLine("");
+            _mockConsole.Received().WriteLine($"Time: 31.12.2020 0:00:00");
+            _mockConsole.Received().WriteLine($"Extension: .txt");
         }
 
         [TestMethod()]

@@ -19,8 +19,8 @@ namespace IdentifyTheDocument
         public virtual void Open()
         {
             _console.WriteLine($"Name: {_fileInfo.Name}");
-            _console.WriteLine("Time: {0}", _fileInfo.CreationTime);
-            _console.WriteLine("Extension: {0}", _fileInfo.Extension);
+            _console.WriteLine($"Time: {_fileInfo.CreationTime}");
+            _console.WriteLine($"Extension: {_fileInfo.Extension}");
         }
     }
 }
