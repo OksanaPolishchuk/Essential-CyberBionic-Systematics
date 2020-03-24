@@ -1,4 +1,4 @@
-﻿namespace IdentifyTheDocument
+﻿namespace IdentifyTheDocument.Wrappers
 {
     public interface IConsoleWrapper
     {

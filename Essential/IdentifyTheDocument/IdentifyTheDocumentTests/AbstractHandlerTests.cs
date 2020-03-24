@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Mime;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IdentifyTheDocument;
 using IdentifyTheDocument.Wrappers;
@@ -14,18 +15,21 @@ namespace IdentifyTheDocumentTests
 
         private IFileInfoWrapper _mockFileInfo;
         private IConsoleWrapper _mockConsole;
+        private IFileWrapper _mockFile;
 
         [TestInitialize]
         public void Init()
         {
              _mockFileInfo = Substitute.For<IFileInfoWrapper>();
              _mockFileInfo.Name.Returns("fileInfoName");
+             _mockFileInfo.FullName.Returns("fullFileName");
              _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
              _mockFileInfo.Extension.Returns(".txt");
-            
-             _mockConsole = Substitute.For<IConsoleWrapper>();
+             
+            _mockConsole = Substitute.For<IConsoleWrapper>();
+            _mockFile = Substitute.For<IFileWrapper>();
 
-             _target = new AbstractHandler(_mockFileInfo, _mockConsole);
+            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole);
         }
 
         [TestMethod()]
@@ -41,13 +45,16 @@ namespace IdentifyTheDocumentTests
         }
 
         [TestMethod()]
-        public void CreateTest()
+        public void ChangeTest()
         {
-            Assert.Fail();
+            _target.Change("testContent");
+            _mockFile.Received().AppendAllText("fullFileName", "testContent");
+            _mockFile.Received().ReadAllText("fullFileName");
+            _mockConsole.Received().WriteLine("");
         }
 
         [TestMethod()]
-        public void ChangeTest()
+        public void CreateTest()
         {
             Assert.Fail();
         }

@@ -13,6 +13,7 @@ namespace IdentifyTheDocument.Wrappers
         }
 
         public string Name => _fileInfo.Name;
+        public string FullName => _fileInfo.FullName;
         public string Extension => _fileInfo.Extension;
         public DateTime CreationTime => _fileInfo.CreationTime;
     }
