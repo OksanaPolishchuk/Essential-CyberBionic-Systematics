@@ -33,5 +33,16 @@ namespace IdentifyTheDocument
             var text = _file.ReadAllText(_fileInfo.FullName);
             _console.WriteLine(text);
         }
+
+        public virtual void Create()
+        {
+            var folder = @"C:\Work2";
+            DirectoryInfo d = Directory.CreateDirectory(folder);
+            Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(folder));
+
+            //string path = @"C:\Work2\Test.txt";
+            //string text = "0";
+            File.WriteAllText(path, text, Encoding.UTF8);
+        }
     }
 }

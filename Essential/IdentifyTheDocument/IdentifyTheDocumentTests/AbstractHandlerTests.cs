@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Mime;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,9 +26,11 @@ namespace IdentifyTheDocumentTests
              _mockFileInfo.FullName.Returns("fullFileName");
              _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
              _mockFileInfo.Extension.Returns(".txt");
-             
+
             _mockConsole = Substitute.For<IConsoleWrapper>();
+
             _mockFile = Substitute.For<IFileWrapper>();
+            _mockFile.ReadAllText(_mockFileInfo.FullName).Returns(44.ToString());
 
             _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole);
         }
@@ -50,7 +53,7 @@ namespace IdentifyTheDocumentTests
             _target.Change("testContent");
             _mockFile.Received().AppendAllText("fullFileName", "testContent");
             _mockFile.Received().ReadAllText("fullFileName");
-            _mockConsole.Received().WriteLine("");
+            _mockConsole.Received().WriteLine("44");
         }
 
         [TestMethod()]
