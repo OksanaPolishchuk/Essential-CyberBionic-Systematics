@@ -10,14 +10,16 @@ namespace IdentifyTheDocument
         private readonly IFileWrapper _file;
         private readonly IFileInfoWrapper _fileInfo;
         private readonly IConsoleWrapper _console;
+        private readonly IDirectoryWrapper _directory;
 
         public AbstractHandler(IFileWrapper file,
             IFileInfoWrapper fileInfo,
-            IConsoleWrapper console)
+            IConsoleWrapper console, IDirectoryWrapper directory)
         {
             _file = file;
             _fileInfo = fileInfo;
             _console = console;
+            _directory = directory;
         }
 
         public virtual void Open()
@@ -34,15 +36,23 @@ namespace IdentifyTheDocument
             _console.WriteLine(text);
         }
 
-        public virtual void Create()
+        public virtual void Create(string path)
         {
-            var folder = @"C:\Work2";
-            DirectoryInfo d = Directory.CreateDirectory(folder);
-            Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(folder));
+            _directory.CreateDirectory(path);
+            _console.WriteLine($"The directory was created successfully at {_directory.GetCreationTime(path)}.");
+        }
 
-            //string path = @"C:\Work2\Test.txt";
-            //string text = "0";
-            File.WriteAllText(path, text, Encoding.UTF8);
+        public virtual void Save(string sourceFileName, string destFileName)
+        {
+            try
+            {
+                File.Move(sourceFileName, destFileName);
+                Console.WriteLine("{0} was moved to {1}.", sourceFileName, destFileName);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex); // Write error
+            }
         }
     }
 }

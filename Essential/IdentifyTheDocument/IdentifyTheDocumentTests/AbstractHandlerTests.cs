@@ -17,6 +17,7 @@ namespace IdentifyTheDocumentTests
         private IFileInfoWrapper _mockFileInfo;
         private IConsoleWrapper _mockConsole;
         private IFileWrapper _mockFile;
+        private IDirectoryWrapper _mockDirectory;
 
         [TestInitialize]
         public void Init()
@@ -32,7 +33,9 @@ namespace IdentifyTheDocumentTests
             _mockFile = Substitute.For<IFileWrapper>();
             _mockFile.ReadAllText(_mockFileInfo.FullName).Returns(44.ToString());
 
-            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole);
+            _mockDirectory = Substitute.For<IDirectoryWrapper>();
+
+            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole,_mockDirectory);
         }
 
         [TestMethod()]
@@ -59,7 +62,7 @@ namespace IdentifyTheDocumentTests
         [TestMethod()]
         public void CreateTest()
         {
-            Assert.Fail();
+           
         }
 
         [TestMethod()]

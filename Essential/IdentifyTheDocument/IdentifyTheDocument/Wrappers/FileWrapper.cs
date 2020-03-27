@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace IdentifyTheDocument
+namespace IdentifyTheDocument.Wrappers
 {
     public class FileWrapper : IFileWrapper
     {
