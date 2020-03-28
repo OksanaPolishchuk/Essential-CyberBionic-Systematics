@@ -8,7 +8,8 @@ namespace IdentifyTheDocument
     {
         static void Main()
         {
-            var path = @"C:\Work\newTest.txt";
+            var path = @"C:\Work1";
+            var destFile = Path.Combine( path, @"newTest.txt");
             var fileInfo = new FileInfoWrapper(path);
             var console = new ConsoleWrapper();
             var file = new FileWrapper();
@@ -17,18 +18,16 @@ namespace IdentifyTheDocument
             var abstractHandler = new AbstractHandler(file, fileInfo, console,directory);
             //abstractHandler.Change("");
 
-            var destDirName = @"C:\Work1";
-            abstractHandler.Create(destDirName);
-            
-            abstractHandler.Open();
-            abstractHandler.Change("33");
+            abstractHandler.Create(path);
 
-            var destFileName = Path.Combine(destDirName, @"Test.txt");
-            abstractHandler.Save(path, destFileName);
+            abstractHandler.Change( destFile,"33");
+            abstractHandler.Open(destFile);
 
-            Directory.Delete(destDirName, true);
+            var destFileName = Path.Combine(path, @"Test.txt");
+            abstractHandler.Save(destFile, destFileName);
 
-            Console.WriteLine();
+            Directory.Delete(path, true);
+
             Console.ReadKey();
         }
     }

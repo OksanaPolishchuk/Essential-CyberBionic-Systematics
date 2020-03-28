@@ -14,5 +14,10 @@ namespace IdentifyTheDocument.Wrappers
             var text = File.ReadAllText(path);
             return text;
         }
+
+        public void Move(string sourceFileName,string destFileName)
+        {
+            File.Move(sourceFileName,  destFileName);
+        }
     }
 }

@@ -22,17 +22,17 @@ namespace IdentifyTheDocument
             _directory = directory;
         }
 
-        public virtual void Open()
+        public virtual void Open(string value)
         {
             _console.WriteLine($"Name: {_fileInfo.Name}");
             _console.WriteLine($"Time: {_fileInfo.CreationTime}");
             _console.WriteLine($"Extension: {_fileInfo.Extension}");
         }
 
-        public virtual void Change(string contents)
+        public virtual void Change(string path, string contents)
         {
-            _file.AppendAllText(_fileInfo.FullName, contents);
-            var text = _file.ReadAllText(_fileInfo.FullName);
+            _file.AppendAllText(path, contents);
+            var text = _file.ReadAllText(path);
             _console.WriteLine(text);
         }
 
@@ -46,8 +46,8 @@ namespace IdentifyTheDocument
         {
             try
             {
-                File.Move(sourceFileName, destFileName);
-                Console.WriteLine("{0} was moved to {1}.", sourceFileName, destFileName);
+                _file.Move(sourceFileName, destFileName);
+                _console.WriteLine($"{sourceFileName} was moved to {destFileName}.");
             }
             catch (IOException ex)
             {

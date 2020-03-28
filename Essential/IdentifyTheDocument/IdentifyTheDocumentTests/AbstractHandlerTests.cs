@@ -22,26 +22,30 @@ namespace IdentifyTheDocumentTests
         [TestInitialize]
         public void Init()
         {
-             _mockFileInfo = Substitute.For<IFileInfoWrapper>();
-             _mockFileInfo.Name.Returns("fileInfoName");
-             _mockFileInfo.FullName.Returns("fullFileName");
-             _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
-             _mockFileInfo.Extension.Returns(".txt");
+            _mockFileInfo = Substitute.For<IFileInfoWrapper>();
+            _mockFileInfo.Name.Returns(new FileInfo("fileInfoName").Name);
+            _mockFileInfo.FullName.Returns(new FileInfo("fullFileName").FullName);
+            _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
+            _mockFileInfo.Extension.Returns(".txt");
 
             _mockConsole = Substitute.For<IConsoleWrapper>();
 
             _mockFile = Substitute.For<IFileWrapper>();
-            _mockFile.ReadAllText(_mockFileInfo.FullName).Returns(44.ToString());
+            _mockFile.AppendAllText(_mockFileInfo.Name, "44");
+            _mockFile.ReadAllText(_mockFileInfo.Name).Returns(44.ToString());
+            _mockFile.Move(_mockFileInfo.Name, _mockFileInfo.FullName);
 
             _mockDirectory = Substitute.For<IDirectoryWrapper>();
+            _mockDirectory.CreateDirectory(_mockFileInfo.Name);
+            _mockDirectory.GetCreationTime(_mockFileInfo.CreationTime.ToString());
 
-            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole,_mockDirectory);
+            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
         }
 
         [TestMethod()]
         public void OpenTest()
         {
-            _target.Open();
+            _target.Open("fileInfoName");
             var name = _mockFileInfo.Received().Name;
             var creationTime = _mockFileInfo.Received().CreationTime;
             var extension = _mockFileInfo.Received().Extension;
@@ -53,22 +57,27 @@ namespace IdentifyTheDocumentTests
         [TestMethod()]
         public void ChangeTest()
         {
-            _target.Change("testContent");
-            _mockFile.Received().AppendAllText("fullFileName", "testContent");
-            _mockFile.Received().ReadAllText("fullFileName");
+            _target.Change(_mockFileInfo.Name, "44");
+            _mockFile.Received().AppendAllText(_mockFileInfo.Name, "44");
+            _mockFile.Received().ReadAllText(_mockFileInfo.Name);
             _mockConsole.Received().WriteLine("44");
         }
 
         [TestMethod()]
         public void CreateTest()
         {
-           
+            _target.Create(_mockFileInfo.Name);
+            _mockDirectory.Received().CreateDirectory(_mockFileInfo.Name);
+            _mockDirectory.Received().GetCreationTime(_mockFileInfo.CreationTime.ToString());
+            _mockConsole.Received().WriteLine($"The directory was created successfully at {_mockDirectory.GetCreationTime("")}.");
         }
 
         [TestMethod()]
         public void SaveTest()
         {
-            Assert.Fail();
+            _target.Save(_mockFileInfo.Name, _mockFileInfo.FullName);
+            _mockFile.Received().Move(_mockFileInfo.Name, _mockFileInfo.FullName);
+            _mockConsole.Received().WriteLine($"{_mockFileInfo.Name} was moved to {_mockFileInfo.FullName}.");
         }
     }
 }
