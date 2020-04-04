@@ -18,7 +18,6 @@ namespace IdentifyTheDocument
             var abstractHandler = new XmlHandler(file, fileInfo, console, directory);
 
             abstractHandler.Create(path);
-
             abstractHandler.Change( destFile,"33");
             abstractHandler.Open(destFile);
 

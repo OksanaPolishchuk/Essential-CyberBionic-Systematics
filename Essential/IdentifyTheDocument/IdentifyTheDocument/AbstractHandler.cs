@@ -57,17 +57,29 @@ namespace IdentifyTheDocument
 
         public override void Change(string path, string contents)
         {
-            
+            _file.AppendAllText(path, contents);
+            var text = _file.ReadAllText(path);
+            _console.WriteLine(text);
         }
 
         public override void Open(string value)
         {
-            
+            _console.WriteLine($"Name: {_fileInfo.Name}");
+            _console.WriteLine($"Time: {_fileInfo.CreationTime}");
+            _console.WriteLine($"Extension: {_fileInfo.Extension}");
         }
 
         public override void Save(string sourceFileName, string destFileName)
         {
-            
+            try
+            {
+                _file.Move(sourceFileName, destFileName);
+                _console.WriteLine($"{sourceFileName} was moved to {destFileName}.");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
