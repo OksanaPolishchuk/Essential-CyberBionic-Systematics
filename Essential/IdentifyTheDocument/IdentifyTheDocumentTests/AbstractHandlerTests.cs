@@ -38,7 +38,7 @@ namespace IdentifyTheDocumentTests
             _mockDirectory.CreateDirectory(_mockFileInfo.Name);
             _mockDirectory.GetCreationTime(_mockFileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
 
-            _target = new XmlHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
+            _target = new TXTHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
         }
 
         [TestMethod()]
