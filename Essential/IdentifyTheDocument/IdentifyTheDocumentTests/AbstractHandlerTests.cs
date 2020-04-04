@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Net.Mime;
 using System.Text;
@@ -23,23 +24,21 @@ namespace IdentifyTheDocumentTests
         public void Init()
         {
             _mockFileInfo = Substitute.For<IFileInfoWrapper>();
-            _mockFileInfo.Name.Returns(new FileInfo("fileInfoName").Name);
-            _mockFileInfo.FullName.Returns(new FileInfo("fullFileName").FullName);
+            _mockFileInfo.Name.Returns("fileInfoName");
+            _mockFileInfo.FullName.Returns("fullFileName");
             _mockFileInfo.CreationTime.Returns(new DateTime(2020, 12, 31));
             _mockFileInfo.Extension.Returns(".txt");
 
             _mockConsole = Substitute.For<IConsoleWrapper>();
 
             _mockFile = Substitute.For<IFileWrapper>();
-            _mockFile.AppendAllText(_mockFileInfo.Name, "44");
-            _mockFile.ReadAllText(_mockFileInfo.Name).Returns(44.ToString());
-            _mockFile.Move(_mockFileInfo.Name, _mockFileInfo.FullName);
+            _mockFile.ReadAllText(_mockFileInfo.Name).Returns("5545");
 
             _mockDirectory = Substitute.For<IDirectoryWrapper>();
             _mockDirectory.CreateDirectory(_mockFileInfo.Name);
-            _mockDirectory.GetCreationTime(_mockFileInfo.CreationTime.ToString());
+            _mockDirectory.GetCreationTime(_mockFileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
 
-            _target = new AbstractHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
+            _target = new XmlHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
         }
 
         [TestMethod()]
@@ -60,7 +59,7 @@ namespace IdentifyTheDocumentTests
             _target.Change(_mockFileInfo.Name, "44");
             _mockFile.Received().AppendAllText(_mockFileInfo.Name, "44");
             _mockFile.Received().ReadAllText(_mockFileInfo.Name);
-            _mockConsole.Received().WriteLine("44");
+            _mockConsole.Received().WriteLine("5545");
         }
 
         [TestMethod()]
@@ -68,7 +67,7 @@ namespace IdentifyTheDocumentTests
         {
             _target.Create(_mockFileInfo.Name);
             _mockDirectory.Received().CreateDirectory(_mockFileInfo.Name);
-            _mockDirectory.Received().GetCreationTime(_mockFileInfo.CreationTime.ToString());
+            _mockDirectory.Received().GetCreationTime(_mockFileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
             _mockConsole.Received().WriteLine($"The directory was created successfully at {_mockDirectory.GetCreationTime("")}.");
         }
 
