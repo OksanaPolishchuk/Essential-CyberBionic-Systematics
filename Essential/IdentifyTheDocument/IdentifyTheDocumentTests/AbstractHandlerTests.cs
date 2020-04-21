@@ -38,7 +38,7 @@ namespace IdentifyTheDocumentTests
             _mockDirectory.CreateDirectory(_mockFileInfo.Name);
             _mockDirectory.GetCreationTime(_mockFileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
 
-            _target = new TXTHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
+            _target = new TxtHandler(_mockFile, _mockFileInfo, _mockConsole, _mockDirectory);
         }
 
         [TestMethod()]
@@ -56,7 +56,7 @@ namespace IdentifyTheDocumentTests
         [TestMethod()]
         public void ChangeTest()
         {
-            _target.Change(_mockFileInfo.Name, "44");
+            //_target.Change(_mockFileInfo.Name);
             _mockFile.Received().AppendAllText(_mockFileInfo.Name, "44");
             _mockFile.Received().ReadAllText(_mockFileInfo.Name);
             _mockConsole.Received().WriteLine("5545");

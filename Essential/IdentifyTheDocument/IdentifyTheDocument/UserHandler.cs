@@ -1,19 +1,26 @@
 ﻿using System;
 using System.IO;
-using System.Security.Policy;
+using System.Web.Mvc;
 using System.Xml;
+using DocumentFormat.OpenXml.Office2010.PowerPoint;
+using DocumentFormat.OpenXml.Presentation;
+using DocumentFormat.OpenXml.Wordprocessing;
+using GS;
 using IdentifyTheDocument.Wrappers;
+using Newtonsoft.Json;
+using OpenXmlPowerTools;
+using Formatting = DocumentFormat.OpenXml.Drawing.Charts.Formatting;
 
 namespace IdentifyTheDocument
 {
-    public class TxtHandler : AbstractHandler
+    class UserHandler : AbstractHandler
     {
         private readonly IFileWrapper _file;
         private readonly IFileInfoWrapper _fileInfo;
         private readonly IConsoleWrapper _console;
         private readonly IDirectoryWrapper _directory;
 
-        public TxtHandler(IFileWrapper file, IFileInfoWrapper fileInfo, IConsoleWrapper console, IDirectoryWrapper directory)
+        public UserHandler(IFileWrapper file, IFileInfoWrapper fileInfo, IConsoleWrapper console, IDirectoryWrapper directory)
             : base(file, fileInfo, console, directory)
         {
             _file = file;
@@ -28,11 +35,12 @@ namespace IdentifyTheDocument
             _console.WriteLine($"The directory was created successfully at {_directory.GetCreationTime(path)}.");
         }
 
-        public override void Change(string path, string contents)
+        public override void Change(string pathJson, string json)
         {
-            _file.AppendAllText(path, contents);
-            var text = _file.ReadAllText(path);
-            _console.WriteLine(text);
+            _file.WriteAllText(pathJson, json);
+            var text = _file.ReadAllText(pathJson);
+            var deserializeUser = JsonConvert.DeserializeObject<User>(text);
+            Console.WriteLine(text);
         }
 
         public override void Open(string value)

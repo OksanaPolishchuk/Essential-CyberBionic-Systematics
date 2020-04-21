@@ -4,8 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentifyTheDocument", "IdentifyTheDocument\IdentifyTheDocument.csproj", "{21D853F9-308B-4FB0-820F-DE54BA9A71AC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8E7877F-A247-4F27-B974-F86236F3B495} = {E8E7877F-A247-4F27-B974-F86236F3B495}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentifyTheDocumentTests", "IdentifyTheDocumentTests\IdentifyTheDocumentTests.csproj", "{2078B373-C55C-48B8-A1AB-0EF60700FB5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GS", "..\..\..\Miscellaneous\GS\GS\GS.csproj", "{E8E7877F-A247-4F27-B974-F86236F3B495}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{2078B373-C55C-48B8-A1AB-0EF60700FB5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2078B373-C55C-48B8-A1AB-0EF60700FB5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2078B373-C55C-48B8-A1AB-0EF60700FB5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E7877F-A247-4F27-B974-F86236F3B495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E7877F-A247-4F27-B974-F86236F3B495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E7877F-A247-4F27-B974-F86236F3B495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E7877F-A247-4F27-B974-F86236F3B495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
