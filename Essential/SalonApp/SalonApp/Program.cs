@@ -33,7 +33,7 @@ namespace SalonApp
 
     class Administrator : ISalon
     {
-        Notification _notification; // информация о торгах
+        Notification _notification; 
 
         List<IСlient> _сlients;
 
